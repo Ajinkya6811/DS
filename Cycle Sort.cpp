@@ -1,5 +1,4 @@
 # Program of Cycle Sort in C++
-
 // C++ program to implement cycle sort
 #include <iostream>
 using namespace std;
@@ -77,4 +76,3 @@ int main()
 	for (int i =0; i<n; i++)
 		cout << arr[i] << " ";
 	return 0;
-}
