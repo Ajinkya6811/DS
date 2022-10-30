@@ -1,48 +1,43 @@
-# Bucket Sort Program in C++
-// C++ program to sort an
-// array using bucket sort
-#include <algorithm>
-#include <iostream>
-#include <vector>
-using namespace std;
+# Program of Selection Sort in C++
 
-// Function to sort arr[] of
-// size n using bucket sort
-void bucketSort(float arr[], int n)
-{
-	
-	// 1) Create n empty buckets
-	vector<float> b[n];
-
-	// 2) Put array elements
-	// in different buckets
-	for (int i = 0; i < n; i++) {
-		int bi = n * arr[i]; // Index in bucket
-		b[bi].push_back(arr[i]);
-	}
-
-	// 3) Sort individual buckets
-	for (int i = 0; i < n; i++)
-		sort(b[i].begin(), b[i].end());
-
-	// 4) Concatenate all buckets into arr[]
-	int index = 0;
-	for (int i = 0; i < n; i++)
-		for (int j = 0; j < b[i].size(); j++)
-			arr[index++] = b[i][j];
-}
-
-/* Driver program to test above function */
-int main()
-{
-	float arr[]
-		= { 0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434 };
-	int n = sizeof(arr) / sizeof(arr[0]);
-	bucketSort(arr, n);
-
-	cout << "Sorted array is \n";
-	for (int i = 0; i < n; i++)
-		cout << arr[i] << " ";
-	return 0;
-}
-
+#include <iostream>  
+  
+using namespace std;  
+  
+void selection(int arr[], int n)  
+{  
+    int i, j, small;  
+      
+    for (i = 0; i < n-1; i++)    // One by one move boundary of unsorted subarray  
+    {  
+        small = i; //minimum element in unsorted array  
+          
+        for (j = i+1; j < n; j++)  
+        if (arr[j] < arr[small])  
+            small = j;  
+// Swap the minimum element with the first element  
+    int temp = arr[small];  
+    arr[small] = arr[i];  
+    arr[i] = temp;  
+      }  
+}  
+  
+void printArr(int a[], int n) /* function to print the array */  
+{  
+    int i;  
+    for (i = 0; i < n; i++)  
+        cout<< a[i] <<" ";  
+}  
+  
+int main()  
+{  
+    int a[] = { 80, 10, 29, 11, 8, 30, 15 };  
+    int n = sizeof(a) / sizeof(a[0]);  
+    cout<< "Before sorting array elements are - "<<endl;  
+    printArr(a, n);  
+    selection(a, n);  
+    cout<< "\nAfter sorting array elements are - "<<endl;    
+    printArr(a, n);  
+  
+    return 0;  
+}    
